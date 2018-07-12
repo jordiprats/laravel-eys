@@ -15,4 +15,9 @@ class Ticket extends Model
   {
     return $this->hasMany(Ticket::class);
   }
+
+  public function author()
+  {
+    return $this->belongsTo(User::class);
+  }
 }

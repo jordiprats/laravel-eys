@@ -15,6 +15,7 @@ class CreateTicketsTable extends Migration
   {
     Schema::create('tickets', function (Blueprint $table) {
       $table->increments('id');
+      $table->integer('user_id')->references('id')->on('users');
       $table->integer('parent_id')->nullable()->references('id')->on('tickets');
       $table->integer('team_id')->references('id')->on('teams');
       $table->string('subject', 100);
