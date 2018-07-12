@@ -34,6 +34,11 @@ class User extends Authenticatable
 
     public function activetickets()
     {
+        return $this->belongsToMany(User::class)->withTimestamps()->wherePivot('status', 'open');
+    }
+
+    public function alltickets()
+    {
         return $this->belongsToMany(User::class)->withTimestamps();
     }
 }
