@@ -20,4 +20,9 @@ class Ticket extends Model
   {
     return $this->belongsTo(User::class);
   }
+
+  public function owners()
+  {
+      return $this->belongsToMany(User::class)->withTimestamps();
+  }
 }
