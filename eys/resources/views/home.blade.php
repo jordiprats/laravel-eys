@@ -20,7 +20,7 @@
                         <h3>{{ $ticket->subject }}</h3>
                       @endforeach
                     @else
-                        <h3>No active tickets, hooray!</h3>
+                        <center><b>No active tickets, hooray!</b></center>
                     @endif
 
                     @if($activetickets->count()>0)
@@ -32,6 +32,7 @@
                     @else
                       <hr />
                       <h2>You don't belong to any team</h2>
+                      <b>Please enroll on settings</b>
                     @endif
                 </div>
             </div>
