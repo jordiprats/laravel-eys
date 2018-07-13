@@ -52,8 +52,18 @@
                                 <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
                                     {{ Auth::user()->name }} <span class="caret"></span>
                                 </a>
-
                                 <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+
+                                  <a class="dropdown-item" href="{{ route('home') }}"
+                                     onclick="event.preventDefault();
+                                                   document.getElementById('home-form').submit();">
+                                      {{ __('Home') }}
+                                  </a>
+
+                                  <form id="home-form" action="{{ route('home') }}" method="GET" style="display: none;">
+                                      @csrf
+                                  </form>
+
                                   <a class="dropdown-item" href="{{ route('users.edit', ['id' => Auth::user()->id] ) }}"
                                      onclick="event.preventDefault();
                                                    document.getElementById('settings-form').submit();">
@@ -63,16 +73,16 @@
                                   <form id="settings-form" action="{{ route('users.edit', ['id' => Auth::user()->id] ) }}" method="GET" style="display: none;">
                                       @csrf
                                   </form>
-                                    <br />
-                                    <a class="dropdown-item" href="{{ route('logout') }}"
-                                       onclick="event.preventDefault();
-                                                     document.getElementById('logout-form').submit();">
-                                        {{ __('Logout') }}
-                                    </a>
+                                  <br />
+                                  <a class="dropdown-item" href="{{ route('logout') }}"
+                                     onclick="event.preventDefault();
+                                                   document.getElementById('logout-form').submit();">
+                                      {{ __('Logout') }}
+                                  </a>
 
-                                    <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
-                                        @csrf
-                                    </form>
+                                  <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                                      @csrf
+                                  </form>
                                 </div>
                             </li>
                         @endguest
