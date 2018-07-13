@@ -31,7 +31,7 @@ class UserController extends Controller
     if($is_admin || Auth::user()->id==$id)
     {
       $user = User::find($id);
-      return "hola";
+      return view('users.edit')->with('user', $user);
     }
     else
     {
