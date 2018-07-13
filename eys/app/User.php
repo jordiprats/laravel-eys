@@ -26,4 +26,29 @@ class User extends Authenticatable
     protected $hidden = [
         'password', 'remember_token',
     ];
+
+    public function roles()
+    {
+        return $this->belongsToMany(Role::class)->withTimestamps();
+    }
+
+    public function activetickets()
+    {
+        return $this->belongsToMany(User::class)->withTimestamps()->wherePivot('status', 'open');
+    }
+
+    public function closedtickets()
+    {
+        return $this->belongsToMany(User::class)->withTimestamps()->wherePivot('status', 'closed');
+    }
+
+    public function pendingtickets()
+    {
+        return $this->belongsToMany(User::class)->withTimestamps()->wherePivot('status', 'pending');
+    }
+
+    public function alltickets()
+    {
+        return $this->belongsToMany(User::class)->withTimestamps();
+    }
 }
