@@ -27,6 +27,11 @@ class User extends Authenticatable
         'password', 'remember_token',
     ];
 
+    public function teams()
+    {
+        return $this->belongsToMany(Team::class)->withTimestamps();
+    }
+
     public function roles()
     {
         return $this->belongsToMany(Role::class)->withTimestamps();
@@ -34,21 +39,21 @@ class User extends Authenticatable
 
     public function activetickets()
     {
-        return $this->belongsToMany(User::class)->withTimestamps()->wherePivot('status', 'open');
+        return $this->belongsToMany(Ticket::class)->withTimestamps()->wherePivot('status', 'open');
     }
 
     public function closedtickets()
     {
-        return $this->belongsToMany(User::class)->withTimestamps()->wherePivot('status', 'closed');
+        return $this->belongsToMany(Ticket::class)->withTimestamps()->wherePivot('status', 'closed');
     }
 
     public function pendingtickets()
     {
-        return $this->belongsToMany(User::class)->withTimestamps()->wherePivot('status', 'pending');
+        return $this->belongsToMany(Ticket::class)->withTimestamps()->wherePivot('status', 'pending');
     }
 
     public function alltickets()
     {
-        return $this->belongsToMany(User::class)->withTimestamps();
+        return $this->belongsToMany(Ticket::class)->withTimestamps();
     }
 }

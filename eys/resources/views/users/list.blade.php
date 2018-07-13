@@ -5,7 +5,7 @@
     <div class="row justify-content-center">
         <div class="col-md-12">
             <div class="card">
-                <div class="card-header"><h1>Dashboard</h1></div>
+                <div class="card-header"><h1>User's list</h1></div>
 
                 <div class="card-body">
                     @if (session('status'))
@@ -14,10 +14,9 @@
                         </div>
                     @endif
 
-                    <h2>Tasks Owned by You</h2>
+                    <h2>Users</h2>
                     ...
-                    <h2>Active tasks for Team X</h2>
-                    ...
+                    {!! $users->links('pagination') !!}
                 </div>
             </div>
         </div>
