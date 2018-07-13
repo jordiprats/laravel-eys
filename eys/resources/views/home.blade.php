@@ -25,6 +25,7 @@
 
                     @if($activetickets->count()>0)
                       @foreach ($teams as $team)
+                        <hr />
                         <h2>Active tasks for Team {{ $team->name }}</h2>
                         ...
                       @endforeach
