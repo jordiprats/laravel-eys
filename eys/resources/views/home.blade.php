@@ -15,12 +15,23 @@
                     @endif
 
                     <h2>Tasks Owned by You</h2>
-                    ...
-                    
-                    @foreach ($teams as $team)
-                    <h2>Active tasks for Team {{ $team->name }}</h2>
-                    ...
-                    @endforeach
+                    @if($activetickets->count()>0)
+                      @foreach ($activetickets as $ticket)
+                        <h3>{{ $ticket->subject }}</h3>
+                      @endforeach
+                    @else
+                        <h3>No active tickets, hooray!</h3>
+                    @endif
+
+                    @if($activetickets->count()>0)
+                      @foreach ($teams as $team)
+                        <h2>Active tasks for Team {{ $team->name }}</h2>
+                        ...
+                      @endforeach
+                    @else
+                      <hr />
+                      <h2>You don't belong to any team</h2>
+                    @endif
                 </div>
             </div>
         </div>
