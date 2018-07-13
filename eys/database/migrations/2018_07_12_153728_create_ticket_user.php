@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateTicketOwnerships extends Migration
+class CreateTicketUser extends Migration
 {
   /**
    * Run the migrations.
@@ -13,7 +13,7 @@ class CreateTicketOwnerships extends Migration
    */
   public function up()
   {
-    Schema::create('ownerships', function (Blueprint $table) {
+    Schema::create('ticket_user', function (Blueprint $table) {
       $table->increments('id');
       $table->integer('user_id')->references('id')->on('users');
       $table->integer('ticket_id')->references('id')->on('roles');
@@ -29,6 +29,6 @@ class CreateTicketOwnerships extends Migration
    */
   public function down()
   {
-    Schema::dropIfExists('ownerships');
+    Schema::dropIfExists('ticket_user');
   }
 }
