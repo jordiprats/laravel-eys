@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\User;
 use Auth;
+use Session;
 
 class UserController extends Controller
 {
@@ -37,5 +38,24 @@ class UserController extends Controller
     {
       abort(403, 'Unauthorized action');
     }
+  }
+
+  public function update(Request $request)
+  {
+    //validate
+    $this->validate($request, array(
+      'name'        => 'string|max:255',
+    ));
+
+    $user = Auth::user();
+    $user->name=$request->name;
+    $user->save();
+
+    //flash data
+    Session::flash('status', 'Profile updated!');
+    Session::flash('status-class', 'alert-success');
+
+    //redirect
+    return view('users.edit')->with('user', Auth::user());
   }
 }
