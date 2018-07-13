@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\User;
+use App\Team;
 use Auth;
 use Session;
 
@@ -32,7 +33,8 @@ class UserController extends Controller
     if($is_admin || Auth::user()->id==$id)
     {
       $user = User::find($id);
-      return view('users.edit')->with('user', $user);
+      $all_teams = Team::all('id', 'name')->toArray();
+      return view('users.edit')->with('user', $user)->with('all_teams', $all_teams);
     }
     else
     {
@@ -56,6 +58,6 @@ class UserController extends Controller
     Session::flash('status-class', 'alert-success');
 
     //redirect
-    return view('users.edit')->with('user', Auth::user());
+    return $this->edit($user->id);
   }
 }

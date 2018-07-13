@@ -21,6 +21,13 @@
                       {{ Form::label('name', 'Display name') }}
                       {{ Form::text('name', $user->name) }}
                     </div>
+
+                    <div class="form-group">
+                      {{ Form::label('teams', 'Teams') }}
+                      {{  print_r($all_teams) }}
+                      {{ Form::select('teams[]', $all_teams, $user->teams->only('id')->flatMap(function ($values) { return $values;}), [ 'multiple'=>'multiple' ]) }}
+                    </div>
+
                     {{ Form::submit('Save', array('class'=>'btn-success btn-lg')) }}
                     {{ Form::close() }}
                 </div>

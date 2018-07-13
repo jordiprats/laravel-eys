@@ -57,7 +57,7 @@
                                   <a class="dropdown-item" href="{{ route('home') }}"
                                      onclick="event.preventDefault();
                                                    document.getElementById('home-form').submit();">
-                                      {{ __('Home') }}
+                                      {{ __('Dashboard') }}
                                   </a>
 
                                   <form id="home-form" action="{{ route('home') }}" method="GET" style="display: none;">
