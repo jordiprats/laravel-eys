@@ -12,6 +12,7 @@
                         <div class="alert alert-success" role="alert">
                             {{ session('status') }}
                         </div>
+                        {{ session()->forget('status') }}
                     @endif
 
                     <h2>Users</h2>

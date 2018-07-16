@@ -12,13 +12,16 @@
                         <div class="alert alert-success" role="alert">
                             {{ session('status') }}
                         </div>
+                        {{ session()->forget('status') }}
                     @endif
 
                     <h2>Tasks Owned by You</h2>
                     @if($activetickets->count()>0)
+                      <ul>
                       @foreach ($activetickets as $ticket)
-                        <h3>{{ $ticket->subject }}</h3>
+                        <li>{{ $ticket->subject }}</li>
                       @endforeach
+                    </ul>
                     @else
                         <center><b>No active tickets, hooray!</b></center>
                     @endif
@@ -27,7 +30,18 @@
                       @foreach ($teams as $team)
                         <hr />
                         <h2>Active tasks for Team {{ $team->name }}</h2>
-                        ...
+                        @if($team->tickets->count()>0)
+                          <ul>
+                          @foreach ($team->tickets as $ticket)
+                            {{ Form::model($ticket, ['method' => 'POST', 'route' => ['take.ownership', $ticket->id]]) }}
+                            {{ Form::hidden('set_ownetship_ticket_id', $ticket->id) }}
+                            <li>{{ $ticket->subject }} {{ Form::submit('Take ownership', array('class'=>'btn-success btn-sm')) }}</li>
+                            {{ Form::close() }}
+                          @endforeach
+                        </ul>
+                        @else
+                            <center><b>No active tickets, hooray!</b></center>
+                        @endif
                       @endforeach
                     @else
                       <hr />
