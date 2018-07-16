@@ -62,10 +62,7 @@ class UserController extends Controller
     $user->name=$request->name;
     $user->save();
 
-    foreach($request->teams as $team_id)
-    {
-      $user->teams()->attach($team_id);
-    }
+    $user->teams()->sync($request->teams);
 
     //flash data
     Session::flash('status', 'Profile updated!');

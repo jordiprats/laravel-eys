@@ -23,7 +23,7 @@
                         <center><b>No active tickets, hooray!</b></center>
                     @endif
 
-                    @if($activetickets->count()>0)
+                    @if($teams->count()>0)
                       @foreach ($teams as $team)
                         <hr />
                         <h2>Active tasks for Team {{ $team->name }}</h2>
