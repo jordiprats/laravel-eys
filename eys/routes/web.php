@@ -25,6 +25,7 @@ Route::prefix('/nslave')->group(function () {
     Route::resource('/teams', 'TeamController');
     Route::resource('/tickets', 'TicketController');
     Route::post('/takeownership/{ticket}', 'TicketController@takeOwnership')->name('take.ownership');
+    Route::post('/releaseownership/{ticket}', 'TicketController@releaseOwnership')->name('release.ownership');
 });
 
 Route::get('/home', 'HomeController@index')->name('home');

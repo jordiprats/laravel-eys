@@ -9,7 +9,7 @@
 
                 <div class="card-body">
                     @if (session('status'))
-                        <div class="alert alert-success" role="alert">
+                        <div class="alert {{ session('status-class') }}" role="alert">
                             {{ session('status') }}
                         </div>
                         {{ session()->forget('status') }}
@@ -19,7 +19,12 @@
                     @if($activetickets->count()>0)
                       <ul>
                       @foreach ($activetickets as $ticket)
-                        <li>{{ $ticket->subject }}</li>
+                        <li>{{ $ticket->subject }}
+                            {{ Form::model($ticket, ['method' => 'POST', 'route' => ['release.ownership', $ticket->id]]) }}
+                            {{ Form::hidden('release_ownetship_ticket_id', $ticket->id) }}
+                            {{ Form::submit('Release ownership', array('class'=>'btn-danger btn-sm')) }}
+                            {{ Form::close() }}
+                        </li>
                       @endforeach
                     </ul>
                     @else
@@ -33,10 +38,12 @@
                         @if($team->tickets->count()>0)
                           <ul>
                           @foreach ($team->tickets as $ticket)
-                            {{ Form::model($ticket, ['method' => 'POST', 'route' => ['take.ownership', $ticket->id]]) }}
-                            {{ Form::hidden('set_ownetship_ticket_id', $ticket->id) }}
-                            <li>{{ $ticket->subject }} {{ Form::submit('Take ownership', array('class'=>'btn-success btn-sm')) }}</li>
-                            {{ Form::close() }}
+                            <li>{{ $ticket->subject }}
+                              {{ Form::model($ticket, ['method' => 'POST', 'route' => ['take.ownership', $ticket->id]]) }}
+                              {{ Form::hidden('set_ownetship_ticket_id', $ticket->id) }}
+                              {{ Form::submit('Take ownership', array('class'=>'btn-success btn-sm')) }}
+                              {{ Form::close() }}
+                            </li>
                           @endforeach
                         </ul>
                         @else
