@@ -26,6 +26,11 @@ class UserController extends Controller
     return view('users.list',compact('users'))->with('i', ($request->input('page', 1) - 1) * 10);
   }
 
+  public function show($id)
+  {
+    return $this->edit($id);
+  }
+
   public function edit($id)
   {
     $is_admin=Auth::user()->roles->contains('name','Admin');
@@ -33,17 +38,11 @@ class UserController extends Controller
     if($is_admin || Auth::user()->id==$id)
     {
       $user = User::find($id);
-      $all_teams = array();
-      foreach(Team::all() as $team)
-      {
-        $all_teams[] = $team->name;
-      }
-      $user_teams= array();
-      foreach($user->teams as $team)
-      {
-        $user_teams[] = $team->name;
-      }
-      return view('users.edit')->with('user', $user)->with('all_teams', $all_teams)->with('user_teams', $user_teams);
+
+      return view('users.edit')
+              ->with('user', $user)
+              ->with('all_teams', Team::pluck('name', 'id')->all())
+              ->with('user_teams', $user->teams->pluck('id'));
     }
     else
     {
@@ -55,12 +54,15 @@ class UserController extends Controller
   {
     //validate
     $this->validate($request, array(
-      'name'        => 'string|max:255',
+      'name'        => 'string|max:255|required',
+      'teams'       => 'required',
     ));
 
     $user = Auth::user();
     $user->name=$request->name;
     $user->save();
+
+    print_r($request->teams);
 
     //flash data
     Session::flash('status', 'Profile updated!');

@@ -24,7 +24,7 @@
 
                     <div class="form-group">
                       {{ Form::label('teams', 'Teams') }}
-                      {{ Form::select('teams', $all_teams, $user_teams, [ 'multiple'=>'multiple' ]) }}
+                      {{ Form::select('teams', $all_teams, $user_teams, [ 'multiple'=>'multiple', 'name'=>'teams[]' ]) }}
                     </div>
 
                     {{ Form::submit('Save', array('class'=>'btn-success btn-lg')) }}
