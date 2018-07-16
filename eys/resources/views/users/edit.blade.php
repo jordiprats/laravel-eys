@@ -24,8 +24,7 @@
 
                     <div class="form-group">
                       {{ Form::label('teams', 'Teams') }}
-                      {{  print_r($all_teams) }}
-                      {{ Form::select('teams[]', $all_teams, $user->teams->only('id')->flatMap(function ($values) { return $values;}), [ 'multiple'=>'multiple' ]) }}
+                      {{ Form::select('teams', $all_teams, $user_teams, [ 'multiple'=>'multiple' ]) }}
                     </div>
 
                     {{ Form::submit('Save', array('class'=>'btn-success btn-lg')) }}

@@ -33,8 +33,17 @@ class UserController extends Controller
     if($is_admin || Auth::user()->id==$id)
     {
       $user = User::find($id);
-      $all_teams = Team::all('id', 'name')->toArray();
-      return view('users.edit')->with('user', $user)->with('all_teams', $all_teams);
+      $all_teams = array();
+      foreach(Team::all() as $team)
+      {
+        $all_teams[] = $team->name;
+      }
+      $user_teams= array();
+      foreach($user->teams as $team)
+      {
+        $user_teams[] = $team->name;
+      }
+      return view('users.edit')->with('user', $user)->with('all_teams', $all_teams)->with('user_teams', $user_teams);
     }
     else
     {
