@@ -20,7 +20,7 @@ class CreateTicketsTable extends Migration
       $table->integer('team_id')->references('id')->on('teams');
       $table->string('subject', 100);
       $table->text('description');
-      $table->enum('visibility', ['published', 'internal'])->default('internal');
+      $table->enum('visibility', ['published', 'internal'])->default('published');
       $table->timestamps();
     });
   }
