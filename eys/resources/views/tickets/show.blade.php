@@ -62,7 +62,7 @@
                     @if($ticket->comments->count()>0)
                       @foreach ($ticket->comments as $comment)
                         <div class="card">
-                        <div class="card-header">{{ $comment->created_at }} - {{ $comment->author->name }} - Time spent: {{ $comment->worklog }}</div>
+                        <div class="card-header">{{ $comment->created_at }} - {{ $comment->author->name }} - Time spent: {{ $comment->worktime }}</div>
                         @if($comment->visibility=='internal')
                           <div class="card-subtitle mb-2 text-muted">Internal</div>
                         @endif
