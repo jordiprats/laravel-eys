@@ -26,6 +26,10 @@
 
                     <h2>Work Log</h2>
                     <hr />
+                    @if($ticket->comments->count()>0)
+                    @else
+                      <center>No updates so far</center>
+                    @endif
 
                 </div>
             </div>
