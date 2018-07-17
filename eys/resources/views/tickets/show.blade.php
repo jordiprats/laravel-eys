@@ -20,13 +20,45 @@
                       <li><b>Team</b>: {{ $ticket->team->name }}</li>
                       <li><b>Created</b>: {{ $ticket->created_at }}</li>
                       <li><b>Visibility</b>: {{ $ticket->visibility }}</li>
+                      @if($user->activetickets()->find($ticket->id))
+                      <li><b>Ownership</b>: {{ $user->name }}</li>
+                      @endif
                     </ul>
+                    <hr />
+
+                    <h2>Description</h2>
                     {{ $ticket->description }}
                     <hr />
 
+                    @if($user->activetickets()->find($ticket->id))
+                      <div class="card">
+                      <div class="card-header">Log work</div>
+                      <div class="card-body">
+                        {{ Form::open(['method' => 'POST', 'route' => ['comments.store']]) }}
+
+                        {{ Form::hidden('ticket_id', $ticket->id) }}
+                        {{ Form::hidden('user_id', $user->id) }}
+                        <div class="form-group">
+                          {{ Form::label('description', 'Work Log') }}
+                          {{ Form::textarea('description', '') }}
+                        </div>
+
+                        {{ Form::submit('Log work', array('class'=>'btn-success btn-lg')) }}
+                        {{ Form::close() }}
+                      </div>
+                      </div>
+                    @endif
+
                     <h2>Work Log</h2>
-                    <hr />
                     @if($ticket->comments->count()>0)
+                      @foreach ($ticket->comments as $comment)
+                        <div class="card">
+                        <div class="card-header">{{ $comment->created_at }}</div>
+                        <div class="card-body">
+                          {{ $comment->description }}
+                        </div>
+                        </div>
+                      @endforeach
                     @else
                       <center>No updates so far</center>
                     @endif
