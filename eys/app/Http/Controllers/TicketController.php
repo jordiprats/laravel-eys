@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Auth;
 use Session;
+use App\User;
+use App\Ticket;
 
 class TicketController extends Controller
 {
@@ -49,6 +51,22 @@ class TicketController extends Controller
 
     //redirect
     return redirect()->route('home');
+  }
+
+  public function show($id)
+  {
+    $user = Auth::user();
+    $ticket = Ticket::find($id);
+
+    return view('tickets.show')
+            ->with('user', $user)
+            ->with('ticket', $ticket);
+  }
+
+  public function index(Request $request)
+  {
+    $tickets=Ticket::paginate(10);
+    return view('tickets.list',compact('tickets'))->with('i', ($request->input('page', 1) - 1) * 10);
   }
 
 }

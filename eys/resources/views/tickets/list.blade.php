@@ -15,13 +15,13 @@
                         {{ session()->forget('status') }}
                     @endif
 
-                    <h1>Users</h1>
+                    <h1>Tickets</h1>
                     <ul>
-                      @foreach ($users as $user)
-                        <li>{{ $user->name }}</li>
+                      @foreach ($tickets as $ticket)
+                        <li><a href="{{ route('tickets.show', ['id' => $ticket->id] ) }}">{{ $ticket->subject }}</a></li>
                       @endforeach
                     </ul>
-                    {!! $users->links('pagination') !!}
+                    {!! $tickets->links('pagination') !!}
                 </div>
             </div>
         </div>

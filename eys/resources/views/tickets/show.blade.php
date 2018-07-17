@@ -15,13 +15,18 @@
                         {{ session()->forget('status') }}
                     @endif
 
-                    <h1>Users</h1>
+                    <h1>{{ $ticket->subject }}</h1>
                     <ul>
-                      @foreach ($users as $user)
-                        <li>{{ $user->name }}</li>
-                      @endforeach
+                      <li><b>Team</b>: {{ $ticket->team->name }}</li>
+                      <li><b>Created</b>: {{ $ticket->created_at }}</li>
+                      <li><b>Visibility</b>: {{ $ticket->visibility }}</li>
                     </ul>
-                    {!! $users->links('pagination') !!}
+                    {{ $ticket->description }}
+                    <hr />
+
+                    <h2>Work Log</h2>
+                    <hr />
+
                 </div>
             </div>
         </div>

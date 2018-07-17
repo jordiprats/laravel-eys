@@ -19,7 +19,7 @@
                     @if($activetickets->count()>0)
                       <ul>
                       @foreach ($activetickets as $ticket)
-                        <li>{{ $ticket->subject }}
+                        <li><a href="{{ route('tickets.show', ['id' => $ticket->id] ) }}">{{ $ticket->subject }}</a>
                             {{ Form::model($ticket, ['method' => 'POST', 'route' => ['release.ownership', $ticket->id]]) }}
                             {{ Form::hidden('release_ownetship_ticket_id', $ticket->id) }}
                             {{ Form::submit('Release ownership', array('class'=>'btn-danger btn-sm')) }}
@@ -38,7 +38,7 @@
                         @if($team->tickets->count()>0)
                           <ul>
                           @foreach ($team->tickets as $ticket)
-                            <li>{{ $ticket->subject }}
+                            <li><a href="{{ route('tickets.show', ['id' => $ticket->id] ) }}">{{ $ticket->subject }}</a>
                               {{ Form::model($ticket, ['method' => 'POST', 'route' => ['take.ownership', $ticket->id]]) }}
                               {{ Form::hidden('set_ownetship_ticket_id', $ticket->id) }}
                               {{ Form::submit('Take ownership', array('class'=>'btn-success btn-sm')) }}
