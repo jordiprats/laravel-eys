@@ -6,6 +6,8 @@ use Illuminate\Database\Eloquent\Model;
 
 class Team extends Model
 {
+  protected $guarded = [];
+  
   public function tickets()
   {
     return $this->hasMany(Ticket::class);

@@ -6,6 +6,8 @@ use Illuminate\Database\Eloquent\Model;
 
 class Ticket extends Model
 {
+  protected $guarded = [];
+  
   public function comments()
   {
     return $this->hasMany(Comment::class);
