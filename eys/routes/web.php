@@ -27,6 +27,7 @@ Route::prefix('/nslave')->group(function () {
     Route::post('/takeownership/{ticket}', 'TicketController@takeOwnership')->name('take.ownership');
     Route::post('/releaseownership/{ticket}', 'TicketController@releaseOwnership')->name('release.ownership');
     Route::get('/importer', 'ImportController@create')->name('importer');
+    Route::post('/importer/store', 'ImportController@store')->name('importer.store');
 });
 
 Route::get('/home', 'HomeController@index')->name('home');
