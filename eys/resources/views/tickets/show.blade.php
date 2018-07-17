@@ -26,7 +26,7 @@
                     </ul>
                     <hr />
 
-                    <h2>Description</h2>
+                    <h2>Original ticket description</h2>
                     {{ $ticket->description }}
                     <hr />
 

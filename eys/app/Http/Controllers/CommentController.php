@@ -38,5 +38,8 @@ class CommentController extends Controller
                                     'description' => $request->description,
                                   ]);
     }
+
+    return redirect()->route('tickets.show', ['id' => $request->ticket_id] );
+
   }
 }

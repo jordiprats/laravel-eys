@@ -7,10 +7,10 @@ use Illuminate\Database\Eloquent\Model;
 class Ticket extends Model
 {
   protected $guarded = [];
-  
+
   public function comments()
   {
-    return $this->hasMany(Comment::class);
+    return $this->hasMany(Comment::class)->orderBy('created_at', 'desc');
   }
 
   public function subtickets()
