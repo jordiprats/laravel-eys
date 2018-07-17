@@ -22,6 +22,7 @@ class CommentController extends Controller
     $this->validate($request, array(
       'ticket_id' => 'required|integer',
       'user_id' => 'required|integer',
+      'worktime' => 'required|integer',
       'description' => 'string',
     ));
 
@@ -35,6 +36,7 @@ class CommentController extends Controller
       $comment = Comment::create([
                                     'ticket_id'   => $request->ticket_id,
                                     'user_id'     => $request->user_id,
+                                    'worktime'     => $request->worktime,
                                     'description' => $request->description,
                                   ]);
     }

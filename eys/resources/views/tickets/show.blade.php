@@ -38,6 +38,11 @@
 
                         {{ Form::hidden('ticket_id', $ticket->id) }}
                         {{ Form::hidden('user_id', $user->id) }}
+
+                        <div class="form-group">
+                          {{ Form::label('worktime', 'Time (in minutes)') }}
+                          {{ Form::text('worktime', '', ['script' => 'var timeStamp_aq = Math.floor(Date.now() / 1000); alert("penis"); function wasted_aq() { var nouu = Math.floor(Date.now() / 1000); document.getElementsByName("worktime")[0].value=Math.floor(((nouu-timeStamp)/60)+1); setTimeout( "wasted_aq()", 60250 ); } wasted_aq();']) }}
+                        </div>
                         <div class="form-group">
                           {{ Form::label('description', 'Work Log') }}
                           {{ Form::textarea('description', '') }}

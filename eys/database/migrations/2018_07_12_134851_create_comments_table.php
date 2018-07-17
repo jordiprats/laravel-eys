@@ -18,6 +18,7 @@ class CreateCommentsTable extends Migration
       $table->integer('user_id')->references('id')->on('users');
       $table->integer('ticket_id')->references('id')->on('tickets');
       $table->text('description');
+      $table->integer('worktime');
       $table->enum('visibility', ['published', 'internal'])->default('internal');
       $table->timestamps();
     });
