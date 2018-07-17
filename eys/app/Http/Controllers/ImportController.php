@@ -6,5 +6,8 @@ use Illuminate\Http\Request;
 
 class ImportController extends Controller
 {
-  //
+  public function create()
+  {
+    return view('import.create');
+  }
 }

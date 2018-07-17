@@ -65,13 +65,13 @@
                                   </form>
 
                                   @if(Auth::user()->roles()->find(2))
-                                    <a class="dropdown-item" href="{{ route('home') }}"
+                                    <a class="dropdown-item" href="{{ route('importer') }}"
                                        onclick="event.preventDefault();
-                                                     document.getElementById('home-form').submit();">
-                                        {{ __('Dashboard') }}
+                                                     document.getElementById('importer-form').submit();">
+                                        {{ __('Import ticket') }}
                                     </a>
 
-                                    <form id="home-form" action="{{ route('home') }}" method="GET" style="display: none;">
+                                    <form id="importer-form" action="{{ route('importer') }}" method="GET" style="display: none;">
                                         @csrf
                                     </form>
                                   @endif
