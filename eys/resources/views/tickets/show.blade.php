@@ -44,6 +44,10 @@
                           {{ Form::text('worktime', '1') }}
                         </div>
                         <div class="form-group">
+                          {{ Form::label('publish', 'Publish') }}
+                          {{ Form::checkbox('publish', '1', true) }}
+                        </div>
+                        <div class="form-group">
                           {{ Form::label('description', 'Work Log') }}
                           {{ Form::textarea('description', '') }}
                         </div>
@@ -59,6 +63,9 @@
                       @foreach ($ticket->comments as $comment)
                         <div class="card">
                         <div class="card-header">{{ $comment->created_at }} - {{ $comment->author->name }} - Time spent: {{ $comment->worklog }}</div>
+                        @if($comment->visibility=='internal')
+                          <div class="card-subtitle mb-2 text-muted">Internal</div>
+                        @endif
                         <div class="card-body">
                           {{ $comment->description }}
                         </div>

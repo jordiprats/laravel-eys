@@ -26,6 +26,11 @@ class CommentController extends Controller
       'description' => 'string',
     ));
 
+    if($request->publish=='1')
+      $visibility='published';
+    else
+      $visibility='internal';
+
     if(Auth::user()->id != $request->user_id)
     {
       // trying to add a comment using a different user id - fuck off
@@ -36,8 +41,9 @@ class CommentController extends Controller
       $comment = Comment::create([
                                     'ticket_id'   => $request->ticket_id,
                                     'user_id'     => $request->user_id,
-                                    'worktime'     => $request->worktime,
+                                    'worktime'    => $request->worktime,
                                     'description' => $request->description,
+                                    'visibility'  => $visibility,
                                   ]);
     }
 

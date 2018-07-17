@@ -64,6 +64,18 @@
                                       @csrf
                                   </form>
 
+                                  @if(Auth::user()->roles()->find(2))
+                                    <a class="dropdown-item" href="{{ route('home') }}"
+                                       onclick="event.preventDefault();
+                                                     document.getElementById('home-form').submit();">
+                                        {{ __('Dashboard') }}
+                                    </a>
+
+                                    <form id="home-form" action="{{ route('home') }}" method="GET" style="display: none;">
+                                        @csrf
+                                    </form>
+                                  @endif
+
                                   <a class="dropdown-item" href="{{ route('users.edit', ['id' => Auth::user()->id] ) }}"
                                      onclick="event.preventDefault();
                                                    document.getElementById('settings-form').submit();">
