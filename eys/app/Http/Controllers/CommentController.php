@@ -3,6 +3,10 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Auth;
+use Session;
+use App\User;
+use App\Ticket;
 
 class CommentController extends Controller
 {
