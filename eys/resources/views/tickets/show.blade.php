@@ -41,7 +41,7 @@
 
                         <div class="form-group">
                           {{ Form::label('worktime', 'Time (in minutes)') }}
-                          {{ Form::text('worktime', '', ['script' => 'var timeStamp_aq = Math.floor(Date.now() / 1000); alert("penis"); function wasted_aq() { var nouu = Math.floor(Date.now() / 1000); document.getElementsByName("worktime")[0].value=Math.floor(((nouu-timeStamp)/60)+1); setTimeout( "wasted_aq()", 60250 ); } wasted_aq();']) }}
+                          {{ Form::text('worktime', '1') }}
                         </div>
                         <div class="form-group">
                           {{ Form::label('description', 'Work Log') }}
@@ -58,7 +58,7 @@
                     @if($ticket->comments->count()>0)
                       @foreach ($ticket->comments as $comment)
                         <div class="card">
-                        <div class="card-header">{{ $comment->created_at }}</div>
+                        <div class="card-header">{{ $comment->created_at }} - {{ $comment->author->name }} - Time spent: {{ $comment->worklog }}</div>
                         <div class="card-body">
                           {{ $comment->description }}
                         </div>
@@ -73,4 +73,15 @@
         </div>
     </div>
 </div>
+
+<script>
+var timeStamp_wt = Math.floor(Date.now() / 1000);
+
+function wasted_wt() {
+  var nouu = Math.floor(Date.now() / 1000);
+  document.getElementsByName("worktime")[0].value=Math.floor(((nouu-timeStamp_wt)/60)+1);
+  setTimeout( "wasted_wt()", 60250 );
+}
+wasted_wt();
+</script>
 @endsection
