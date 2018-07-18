@@ -20,11 +20,11 @@
                       <ul>
                       @foreach ($activetickets as $ticket)
                         <div class="card"><div class="card-body">
+                          {{ Form::model($ticket, ['method' => 'POST', 'route' => ['release.ownership', $ticket->id]]) }}
+                          {{ Form::hidden('release_ownetship_ticket_id', $ticket->id) }}
+                          {{ Form::submit('Release ownership', array('class'=>'float-right btn-danger btn-sm')) }}
+                          {{ Form::close() }}
                           <a href="{{ route('tickets.show', ['id' => $ticket->id] ) }}">{{ $ticket->subject }}</a>
-                              {{ Form::model($ticket, ['method' => 'POST', 'route' => ['release.ownership', $ticket->id]]) }}
-                              {{ Form::hidden('release_ownetship_ticket_id', $ticket->id) }}
-                              {{ Form::submit('Release ownership', array('class'=>'float-right btn-danger btn-sm')) }}
-                              {{ Form::close() }}
                         </div></div>
                         <hr />
                       @endforeach
@@ -40,11 +40,11 @@
                         @if($team->tickets->count()>0)
                           @foreach ($team->tickets as $ticket)
                             <div class="card"><div class="card-body">
-                            <a href="{{ route('tickets.show', ['id' => $ticket->id] ) }}">{{ $ticket->subject }}</a>
                               {{ Form::model($ticket, ['method' => 'POST', 'route' => ['take.ownership', $ticket->id]]) }}
                               {{ Form::hidden('set_ownetship_ticket_id', $ticket->id) }}
                               {{ Form::submit('Take ownership', array('class'=>'float-right btn-success btn-sm')) }}
                               {{ Form::close() }}
+                              <a href="{{ route('tickets.show', ['id' => $ticket->id] ) }}">{{ $ticket->subject }}</a>
                             </div></div>
                             <hr />
                           @endforeach
