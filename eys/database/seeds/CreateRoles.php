@@ -27,5 +27,10 @@ class CreateRoles extends Seeder
       'created_at' => Carbon::now(),
       'updated_at' => Carbon::now()
     ]);
+    DB::table('roles')->insert([
+      'name' => "Customer",
+      'created_at' => Carbon::now(),
+      'updated_at' => Carbon::now()
+    ]);
   }
 }

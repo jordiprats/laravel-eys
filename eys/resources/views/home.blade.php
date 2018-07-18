@@ -17,7 +17,6 @@
 
                     <h2>Tasks Owned by You</h2>
                     @if($activetickets->count()>0)
-                      <ul>
                       @foreach ($activetickets as $ticket)
                         <div class="card"><div class="card-body">
                           {{ Form::model($ticket, ['method' => 'POST', 'route' => ['release.ownership', $ticket->id]]) }}
@@ -28,7 +27,6 @@
                         </div></div>
                         <hr />
                       @endforeach
-                    </ul>
                     @else
                         <center><b>No active tickets, hooray!</b></center>
                     @endif
