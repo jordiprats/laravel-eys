@@ -8,6 +8,13 @@
                 <div class="card-header"><h1>Import ticket</h1></div>
 
                 <div class="card-body">
+                  @if (session('status'))
+                      <div class="alert {{ session('status-class') }}" role="alert">
+                          {{ session('status') }}
+                      </div>
+                      {{ session()->forget('status') }}
+                  @endif
+                  https://raw.githubusercontent.com/jordiprats/eys-tk01/master/description.json
                   {{ Form::open(['method' => 'POST', 'route' => ['importer.store']]) }}
 
                   <div class="form-group">
