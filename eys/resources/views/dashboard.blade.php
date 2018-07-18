@@ -34,7 +34,7 @@
                     @if($teams->count()>0)
                       @foreach ($teams as $team)
                         <h2>Active tasks for Team {{ $team->name }}</h2>
-                        @if($team->tickets->count()>0)
+                        @if($team->tickets()->count()>0)
                           @foreach ($team->tickets as $ticket)
                             <div class="card"><div class="card-body">
                               {{ Form::model($ticket, ['method' => 'POST', 'route' => ['take.ownership', $ticket->id]]) }}

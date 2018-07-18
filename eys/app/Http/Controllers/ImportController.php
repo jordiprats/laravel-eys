@@ -52,7 +52,7 @@ class ImportController extends Controller
 
     if(!$team)
     {
-      $team = Team::create(["name" => $ticket_json->team]);
+      $team = Team::create(["name" => $ticket_json->ticket->team]);
     }
 
     $ticket = Ticket::where(['subject' => $ticket_json->ticket->subject])->first();
