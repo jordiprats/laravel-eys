@@ -19,12 +19,14 @@
                     @if($activetickets->count()>0)
                       <ul>
                       @foreach ($activetickets as $ticket)
-                        <li><a href="{{ route('tickets.show', ['id' => $ticket->id] ) }}">{{ $ticket->subject }}</a>
-                            {{ Form::model($ticket, ['method' => 'POST', 'route' => ['release.ownership', $ticket->id]]) }}
-                            {{ Form::hidden('release_ownetship_ticket_id', $ticket->id) }}
-                            {{ Form::submit('Release ownership', array('class'=>'btn-danger btn-sm')) }}
-                            {{ Form::close() }}
-                        </li>
+                        <div class="card"><div class="card-body">
+                          <a href="{{ route('tickets.show', ['id' => $ticket->id] ) }}">{{ $ticket->subject }}</a>
+                              {{ Form::model($ticket, ['method' => 'POST', 'route' => ['release.ownership', $ticket->id]]) }}
+                              {{ Form::hidden('release_ownetship_ticket_id', $ticket->id) }}
+                              {{ Form::submit('Release ownership', array('class'=>'float-right btn-danger btn-sm')) }}
+                              {{ Form::close() }}
+                        </div></div>
+                        <hr />
                       @endforeach
                     </ul>
                     @else
@@ -36,16 +38,16 @@
                         <hr />
                         <h2>Active tasks for Team {{ $team->name }}</h2>
                         @if($team->tickets->count()>0)
-                          <ul>
                           @foreach ($team->tickets as $ticket)
-                            <li><a href="{{ route('tickets.show', ['id' => $ticket->id] ) }}">{{ $ticket->subject }}</a>
+                            <div class="card"><div class="card-body">
+                            <a href="{{ route('tickets.show', ['id' => $ticket->id] ) }}">{{ $ticket->subject }}</a>
                               {{ Form::model($ticket, ['method' => 'POST', 'route' => ['take.ownership', $ticket->id]]) }}
                               {{ Form::hidden('set_ownetship_ticket_id', $ticket->id) }}
-                              {{ Form::submit('Take ownership', array('class'=>'btn-success btn-sm')) }}
+                              {{ Form::submit('Take ownership', array('class'=>'float-right btn-success btn-sm')) }}
                               {{ Form::close() }}
-                            </li>
+                            </div></div>
+                            <hr />
                           @endforeach
-                        </ul>
                         @else
                             <center><b>No active tickets, hooray!</b></center>
                         @endif
