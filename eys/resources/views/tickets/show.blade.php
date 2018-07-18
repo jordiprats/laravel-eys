@@ -27,6 +27,7 @@
                       <li><b>Visibility</b>: {{ $ticket->visibility }}</li>
                       @if($user->activetickets()->find($ticket->id))
                       <li><b>Ownership</b>: {{ $user->name }}</li>
+                      <li><b>Total work time</b>: {{ $ticket->comments()->sum('worktime') }}</li>
                       @endif
                     </ul>
                     <hr />

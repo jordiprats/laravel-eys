@@ -14,6 +14,11 @@ class Ticket extends Model
     return $this->hasMany(Comment::class)->where('user_id', Auth::user()->id)->orderBy('created_at', 'desc');
   }
 
+  public function allcomments()
+  {
+    return $this->hasMany(Comment::class, 'comment_id')->orderBy('created_at', 'desc');
+  }
+
   public function subtickets()
   {
     return $this->hasMany(Ticket::class);
