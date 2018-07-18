@@ -15,6 +15,7 @@
                         {{ session()->forget('status') }}
                     @endif
 
+                    <button class="float-right btn-info btn-sm" onclick="toggleinstructions()">Toggle instructions</button>
                     <h1>{{ $ticket->subject }}</h1>
                     <ul>
                       <li><b>Team</b>: {{ $ticket->team->name }}</li>
@@ -29,6 +30,32 @@
                     <h2>Original ticket description</h2>
                     {{ $ticket->description }}
                     <hr />
+
+                    <div id="instructions">
+                      <h2>Instructions</h2>
+                      <ul>
+                        @if($ticket->startup_cmd)
+                          <li>start environment: <pre>{{ $ticket->startup_cmd }}</pre></li>
+                        @endif
+                        @if($ticket->login_cmd)
+                          <li>login to environment: <pre>{{ $ticket->login_cmd }}</pre></li>
+                        @endif
+                        @if($ticket->extra_info)
+                          <li>Other info: {{ $ticket->extra_info }}</li>
+                        @endif
+                      </ul>
+                      <hr />
+                    </div>
+                    <script>
+                    function toggleinstructions() {
+                        var x = document.getElementById("instructions");
+                        if (x.style.display === "none") {
+                            x.style.display = "block";
+                        } else {
+                            x.style.display = "none";
+                        }
+                    }
+                    </script>
 
                     @if($user->activetickets()->find($ticket->id))
                       <div class="card">

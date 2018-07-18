@@ -59,8 +59,18 @@ class ImportController extends Controller
 
     if($ticket)
     {
-      Session::flash('status', 'Ticket with the same subject already imported');
-      Session::flash('status-class', 'alert-danger');
+      $ticket->team_id = $team->id;
+      $ticket->subject = $ticket_json->ticket->subject;
+      $ticket->description = $ticket_json->ticket->description;
+      $ticket->visibility = $ticket_json->ticket->visibility;
+      $ticket->startup_cmd = $ticket_json->ticket->startup_cmd;
+      $ticket->login_cmd = $ticket_json->ticket->login_cmd;
+      $ticket->extra_info = $ticket_json->ticket->extra_info;
+
+      $ticket->save();
+
+      Session::flash('status', 'Ticket updated');
+      Session::flash('status-class', 'alert-info');
     }
     else
     {
