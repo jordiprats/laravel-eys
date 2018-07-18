@@ -3,6 +3,7 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use Auth;
 
 class Ticket extends Model
 {
@@ -10,7 +11,7 @@ class Ticket extends Model
 
   public function comments()
   {
-    return $this->hasMany(Comment::class)->orderBy('created_at', 'desc');
+    return $this->hasMany(Comment::class)->where('user_id', Auth::user()->id)->orderBy('created_at', 'desc');
   }
 
   public function subtickets()

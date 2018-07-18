@@ -8,7 +8,6 @@ class DatabaseSeeder extends Seeder
   {
     $this->call(CreateRoles::class);
     $this->call(CreateAdminUser::class);
-    $this->call(CreateUsers::class);
     $this->call(CreateTeams::class);
     $this->call(CreateDemoTicket::class);
   }

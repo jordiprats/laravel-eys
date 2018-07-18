@@ -15,6 +15,10 @@ class HomeController extends Controller
   public function index()
   {
     $user = Auth::user();
-    return view('home')->with('activetickets', $user->activetickets)->with('teams', $user->teams);
+    return view('home')
+            ->with('activetickets', $user->activetickets)
+            ->with('pendingtickets', $user->pendingtickets)
+            ->with('closedtickets', $user->closedtickets)
+            ->with('teams', $user->teams);
   }
 }

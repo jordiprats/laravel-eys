@@ -25,15 +25,14 @@
                           {{ Form::close() }}
                           <a href="{{ route('tickets.show', ['id' => $ticket->id] ) }}">{{ $ticket->subject }}</a>
                         </div></div>
-                        <hr />
                       @endforeach
                     @else
-                        <center><b>No active tickets, hooray!</b></center>
+                        <center><b>No active tickets</b></center>
                     @endif
+                    <hr />
 
                     @if($teams->count()>0)
                       @foreach ($teams as $team)
-                        <hr />
                         <h2>Active tasks for Team {{ $team->name }}</h2>
                         @if($team->tickets->count()>0)
                           @foreach ($team->tickets as $ticket)
@@ -44,17 +43,49 @@
                               {{ Form::close() }}
                               <a href="{{ route('tickets.show', ['id' => $ticket->id] ) }}">{{ $ticket->subject }}</a>
                             </div></div>
-                            <hr />
                           @endforeach
                         @else
-                            <center><b>No active tickets, hooray!</b></center>
+                            <center><b>No tickets available for this team</b></center>
                         @endif
+                        <hr />
                       @endforeach
                     @else
                       <hr />
                       <h2>You don't belong to any team</h2>
                       <b>Please enroll on settings</b>
                     @endif
+
+                    <h2>Tasks pending review</h2>
+                    @if($pendingtickets->count()>0)
+                      @foreach ($pendingtickets as $ticket)
+                        <div class="card"><div class="card-body">
+                          {{ Form::model($ticket, ['method' => 'POST', 'route' => ['release.ownership', $ticket->id]]) }}
+                          {{ Form::hidden('release_ownetship_ticket_id', $ticket->id) }}
+                          {{ Form::submit('Release ownership', array('class'=>'float-right btn-danger btn-sm')) }}
+                          {{ Form::close() }}
+                          <a href="{{ route('tickets.show', ['id' => $ticket->id] ) }}">{{ $ticket->subject }}</a>
+                        </div></div>
+                      @endforeach
+                    @else
+                        <center><b>No pending tickets</b></center>
+                    @endif
+                    <hr />
+
+                    <h2>Tasks closed</h2>
+                    @if($closedtickets->count()>0)
+                      @foreach ($closedtickets as $ticket)
+                        <div class="card"><div class="card-body">
+                          {{ Form::model($ticket, ['method' => 'POST', 'route' => ['release.ownership', $ticket->id]]) }}
+                          {{ Form::hidden('release_ownetship_ticket_id', $ticket->id) }}
+                          {{ Form::submit('Release ownership', array('class'=>'float-right btn-danger btn-sm')) }}
+                          {{ Form::close() }}
+                          <a href="{{ route('tickets.show', ['id' => $ticket->id] ) }}">{{ $ticket->subject }}</a>
+                        </div></div>
+                      @endforeach
+                    @else
+                        <center><b>No closed tickets</b></center>
+                    @endif
+                    <hr />
                 </div>
             </div>
         </div>

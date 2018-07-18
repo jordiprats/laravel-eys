@@ -39,11 +39,11 @@ class CommentController extends Controller
     else
     {
       $comment = Comment::create([
-                                    'ticket_id'   => $request->ticket_id,
-                                    'user_id'     => $request->user_id,
-                                    'worktime'    => $request->worktime,
-                                    'description' => $request->description,
-                                    'visibility'  => $visibility,
+                                    'ticket_id'      => $request->ticket_id,
+                                    'user_id'        => $request->user_id,
+                                    'worktime'       => $request->worktime,
+                                    'description'    => $request->description,
+                                    'visibility'     => $visibility,
                                   ]);
     }
 
