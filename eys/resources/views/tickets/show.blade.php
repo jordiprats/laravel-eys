@@ -16,6 +16,10 @@
                     @endif
 
                     <button class="float-right btn-info btn-sm" onclick="toggleinstructions()">Toggle instructions</button>
+                    {{ Form::model($ticket, ['method' => 'POST', 'route' => ['release.ownership', $ticket->id]]) }}
+                    {{ Form::hidden('release_ownetship_ticket_id', $ticket->id) }}
+                    {{ Form::submit('Release ownership', array('class'=>'float-right btn-danger btn-sm')) }}
+                    {{ Form::close() }}
                     <h1>{{ $ticket->subject }}</h1>
                     <ul>
                       <li><b>Team</b>: {{ $ticket->team->name }}</li>
