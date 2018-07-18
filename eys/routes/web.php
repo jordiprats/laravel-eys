@@ -30,4 +30,4 @@ Route::prefix('/nslave')->group(function () {
     Route::post('/importer/store', 'ImportController@store')->name('importer.store');
 });
 
-Route::get('/home', 'HomeController@index')->name('home');
+Route::get('/dashboard', 'DashboardController@index')->name('dashboard');

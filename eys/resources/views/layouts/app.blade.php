@@ -54,13 +54,13 @@
                                 </a>
                                 <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
 
-                                  <a class="dropdown-item" href="{{ route('home') }}"
+                                  <a class="dropdown-item" href="{{ route('dashboard') }}"
                                      onclick="event.preventDefault();
                                                    document.getElementById('home-form').submit();">
                                       {{ __('Dashboard') }}
                                   </a>
 
-                                  <form id="home-form" action="{{ route('home') }}" method="GET" style="display: none;">
+                                  <form id="home-form" action="{{ route('dashboard') }}" method="GET" style="display: none;">
                                       @csrf
                                   </form>
 

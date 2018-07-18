@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Auth;
 
-class HomeController extends Controller
+class DashboardController extends Controller
 {
   public function __construct()
   {
@@ -15,7 +15,7 @@ class HomeController extends Controller
   public function index()
   {
     $user = Auth::user();
-    return view('home')
+    return view('dashboard')
             ->with('activetickets', $user->activetickets)
             ->with('pendingtickets', $user->pendingtickets)
             ->with('closedtickets', $user->closedtickets)

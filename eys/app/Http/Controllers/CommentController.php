@@ -34,13 +34,14 @@ class CommentController extends Controller
     if(Auth::user()->id != $request->user_id)
     {
       // trying to add a comment using a different user id - fuck off
-      return redirect()->route('home');
+      return redirect()->route('dashboard');
     }
     else
     {
       $comment = Comment::create([
                                     'ticket_id'      => $request->ticket_id,
                                     'user_id'        => $request->user_id,
+                                    'author_id'      => $request->user_id,
                                     'worktime'       => $request->worktime,
                                     'description'    => $request->description,
                                     'visibility'     => $visibility,

@@ -26,7 +26,7 @@ class TicketController extends Controller
       Session::flash('status-class', 'alert-danger');
 
       //redirect
-      return redirect()->route('home');
+      return redirect()->route('dashboard');
     }
 
     $user->activetickets()->attach($id);
@@ -36,7 +36,7 @@ class TicketController extends Controller
     Session::flash('status-class', 'alert-success');
 
     //redirect
-    return redirect()->route('home');
+    return redirect()->route('dashboard');
   }
 
   public function releaseOwnership($id)
@@ -50,7 +50,7 @@ class TicketController extends Controller
     Session::flash('status-class', 'alert-info');
 
     //redirect
-    return redirect()->route('home');
+    return redirect()->route('dashboard');
   }
 
   public function show($id)

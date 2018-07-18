@@ -68,7 +68,6 @@ class UserController extends Controller
     Session::flash('status', 'Profile updated!');
     Session::flash('status-class', 'alert-success');
 
-    //redirect
-    return $this->edit($user->id);
+    return redirect()->route('dashboard');
   }
 }

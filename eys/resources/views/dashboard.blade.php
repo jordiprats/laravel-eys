@@ -50,9 +50,9 @@
                         <hr />
                       @endforeach
                     @else
-                      <hr />
                       <h2>You don't belong to any team</h2>
                       <b>Please enroll on settings</b>
+                      <hr />
                     @endif
 
                     <h2>Tasks pending review</h2>
