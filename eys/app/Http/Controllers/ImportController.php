@@ -57,16 +57,21 @@ class ImportController extends Controller
 
     $ticket = Ticket::where(['subject' => $ticket_json->ticket->subject])->first();
 
+    $startup_cmd = (property_exists($ticket_json->ticket, 'startup'))?$ticket_json->ticket->startup:null;
+    $stop_cmd = (property_exists($ticket_json->ticket, 'stop_cmd'))?$ticket_json->ticket->stop_cmd:null;
+    $login_cmd = (property_exists($ticket_json->ticket, 'login_cmd'))?$ticket_json->ticket->login_cmd:null;
+    $extra_info = (property_exists($ticket_json->ticket, 'extra_info'))?$ticket_json->ticket->extra_info:null;
+
     if($ticket)
     {
       $ticket->team_id = $team->id;
       $ticket->subject = $ticket_json->ticket->subject;
       $ticket->description = $ticket_json->ticket->description;
       $ticket->visibility = $ticket_json->ticket->visibility;
-      $ticket->startup_cmd = $ticket_json->ticket->startup_cmd;
-      $ticket->stop_cmd = $ticket_json->ticket->stop_cmd;
-      $ticket->login_cmd = $ticket_json->ticket->login_cmd;
-      $ticket->extra_info = $ticket_json->ticket->extra_info;
+      $ticket->startup_cmd = $startup_cmd;
+      $ticket->stop_cmd = $stop_cmd;
+      $ticket->login_cmd = $login_cmd;
+      $ticket->extra_info = $extra_info;
 
       $ticket->save();
 
@@ -81,10 +86,10 @@ class ImportController extends Controller
                                 'subject' => $ticket_json->ticket->subject,
                                 'description' => $ticket_json->ticket->description,
                                 'visibility' => $ticket_json->ticket->visibility,
-                                'startup_cmd' => $ticket_json->ticket->startup_cmd,
-                                'stop_cmd' => $ticket_json->ticket->stop_cmd,
-                                'login_cmd' => $ticket_json->ticket->login_cmd,
-                                'extra_info' => $ticket_json->ticket->extra_info,
+                                'startup_cmd' => $startup_cmd,
+                                'stop_cmd' => $stop_cmd,
+                                'login_cmd' => $login_cmd,
+                                'extra_info' => $extra_info,
                               ]);
 
       Session::flash('status', 'Ticket imported');
