@@ -3,6 +3,7 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use Jenssegers\Optimus\Optimus;
 use Auth;
 
 class Ticket extends Model
@@ -11,7 +12,7 @@ class Ticket extends Model
 
   public function getTicketID()
   {
-    
+    return $optimus->encode($this->id);
   }
 
   public function comments()
