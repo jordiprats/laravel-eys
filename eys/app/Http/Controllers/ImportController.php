@@ -64,6 +64,7 @@ class ImportController extends Controller
       $ticket->description = $ticket_json->ticket->description;
       $ticket->visibility = $ticket_json->ticket->visibility;
       $ticket->startup_cmd = $ticket_json->ticket->startup_cmd;
+      $ticket->stop_cmd = $ticket_json->ticket->stop_cmd;
       $ticket->login_cmd = $ticket_json->ticket->login_cmd;
       $ticket->extra_info = $ticket_json->ticket->extra_info;
 
@@ -81,6 +82,7 @@ class ImportController extends Controller
                                 'description' => $ticket_json->ticket->description,
                                 'visibility' => $ticket_json->ticket->visibility,
                                 'startup_cmd' => $ticket_json->ticket->startup_cmd,
+                                'stop_cmd' => $ticket_json->ticket->stop_cmd,
                                 'login_cmd' => $ticket_json->ticket->login_cmd,
                                 'extra_info' => $ticket_json->ticket->extra_info,
                               ]);

@@ -24,6 +24,7 @@ class CreateTicketsTable extends Migration
       $table->string('startup_cmd', 100)->nullable();
       $table->string('login_cmd', 100)->nullable();
       $table->text('extra_info')->nullable();
+      $table->string('stop_cmd', 100)->nullable();
       $table->timestamps();
     });
   }

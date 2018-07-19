@@ -5,7 +5,7 @@
     <div class="row justify-content-center">
         <div class="col-md-12">
             <div class="card">
-                <div class="card-header"><h1>User's list</h1></div>
+                <div class="card-header"><h1>Ticket {{ $ticket->id }}</h1></div>
 
                 <div class="card-body">
                     @if (session('status'))
@@ -48,6 +48,9 @@
                         @if($ticket->extra_info)
                           <li>Other info: {{ $ticket->extra_info }}</li>
                         @endif
+                        @if($ticket->stop_cmd)
+                          <li>stop environment: <pre>{{ $ticket->stop_cmd }}</pre></li>
+                        @endif
                       </ul>
                       <hr />
                     </div>
@@ -88,6 +91,7 @@
                         {{ Form::close() }}
                       </div>
                       </div>
+                      <hr />
                     @endif
 
                     <h2>Work Log</h2>
