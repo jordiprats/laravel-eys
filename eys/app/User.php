@@ -27,6 +27,12 @@ class User extends Authenticatable
         'password', 'remember_token',
     ];
 
+    public function getUserID()
+    {
+      $hashids = new \Jenssegers\Optimus\Optimus(1580030173, 59260789, 1163945558);
+      return $hashids->encode($this->id);
+    }
+
     public function teams()
     {
         return $this->belongsToMany(Team::class)->withTimestamps();
