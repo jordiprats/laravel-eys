@@ -9,6 +9,11 @@ class Ticket extends Model
 {
   protected $guarded = [];
 
+  public function getTicketID()
+  {
+    
+  }
+
   public function comments()
   {
     return $this->hasMany(Comment::class)->where('user_id', Auth::user()->id)->orderBy('created_at', 'desc');
