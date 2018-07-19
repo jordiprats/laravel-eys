@@ -40,16 +40,16 @@
                       <h2>Instructions</h2>
                       <ul>
                         @if($ticket->startup_cmd)
-                          <li>start environment: <pre>{{ $ticket->startup_cmd }}</pre></li>
+                          <li><b>Start environment</b>: <pre>{{ $ticket->startup_cmd }}</pre></li>
                         @endif
                         @if($ticket->login_cmd)
-                          <li>login to environment: <pre>{{ $ticket->login_cmd }}</pre></li>
-                        @endif
-                        @if($ticket->extra_info)
-                          <li>Other info: {{ $ticket->extra_info }}</li>
+                          <li><b>Login to environment</b>: <pre>{{ $ticket->login_cmd }}</pre></li>
                         @endif
                         @if($ticket->stop_cmd)
-                          <li>stop environment: <pre>{{ $ticket->stop_cmd }}</pre></li>
+                          <li><b>Stop environment</b>: <pre>{{ $ticket->stop_cmd }}</pre></li>
+                        @endif
+                        @if($ticket->extra_info)
+                          <li><b>Other info</b>:<br> {{ $ticket->extra_info }}</li>
                         @endif
                       </ul>
                       <hr />
