@@ -21,10 +21,10 @@ class CreateTicketsTable extends Migration
       $table->string('subject', 100);
       $table->text('description');
       $table->enum('visibility', ['published', 'internal'])->default('published');
-      $table->string('startup_cmd', 100)->nullable();
-      $table->string('login_cmd', 100)->nullable();
+      $table->text('startup_cmd')->nullable();
+      $table->text('login_cmd')->nullable();
       $table->text('extra_info')->nullable();
-      $table->string('stop_cmd', 100)->nullable();
+      $table->text('stop_cmd')->nullable();
       $table->timestamps();
     });
   }
