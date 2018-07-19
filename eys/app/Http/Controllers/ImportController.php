@@ -57,7 +57,7 @@ class ImportController extends Controller
 
     $ticket = Ticket::where(['subject' => $ticket_json->ticket->subject])->first();
 
-    $startup_cmd = (property_exists($ticket_json->ticket, 'startup'))?$ticket_json->ticket->startup:null;
+    $startup_cmd = (property_exists($ticket_json->ticket, 'startup_cmd'))?$ticket_json->ticket->startup:null;
     $stop_cmd = (property_exists($ticket_json->ticket, 'stop_cmd'))?$ticket_json->ticket->stop_cmd:null;
     $login_cmd = (property_exists($ticket_json->ticket, 'login_cmd'))?$ticket_json->ticket->login_cmd:null;
     $extra_info = (property_exists($ticket_json->ticket, 'extra_info'))?$ticket_json->ticket->extra_info:null;
