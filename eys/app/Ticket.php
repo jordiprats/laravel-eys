@@ -10,14 +10,6 @@ class Ticket extends Model
 {
   protected $guarded = [];
 
-<<<<<<< HEAD
-  public function getTicketID()
-  {
-    return $optimus->encode($this->id);
-  }
-
-=======
->>>>>>> parent of 9b38a5b... gmp
   public function comments()
   {
     return $this->hasMany(Comment::class)->where('user_id', Auth::user()->id)->orderBy('created_at', 'desc');
