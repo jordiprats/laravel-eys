@@ -1,5 +1,12 @@
 # laravel-eys
 
+## Dependencies
+
+```
+php7.2-gmp
+php7.2-curl
+```
+
 ## notes
 
 ### rebuild autoload
